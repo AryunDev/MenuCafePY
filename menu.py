@@ -10,9 +10,9 @@ class Menu:
 
         print('''
         ====================MENU=================
-        = a) Crear un nuevo producto            =
-        = b) Mostrar los productos disponibles  =
-        = c) Mostrar un producto en especifico  =
+        = a) Mostrar los productos disponibles  =
+        = b) Mostrar un producto en especifico  =
+        = c) Crear un nuevo producto            =
         = d) Editar un producto                 =
         = e) Eliminar un producto               =
         = f) Para salir del programa presione   =
@@ -23,35 +23,48 @@ class Menu:
         op = input("Ingrese una opcion:\n").capitalize()
         print('\n')
         limpiarpantalla()
-
+        # FUNCIONA
         if op == 'A':
-            # id = int(input("Asigne un id a su nuevo producto:\n"))
-            # nombre = input("Ingrese el nombre del producto:\n")
-            # descripcion = input("Ingrese una descripcion para su producto:\n")
-            # precio = int(input("Ingrese el valor de este producto:\n"))
-                pass
-
+           
+             Api.mostrar_productos()
+        # FUCNIONA
         elif op == 'B':
-            Api.mostrar_productos()
-        elif op == 'C':
-
             id = int(input("Ingrese el id del producto que desea mostrar:\n"))
             Api.mostrar_producto(id)
+        
+        elif op == 'C':
+            # id = int(input("Ingrese el id del nuevo producto:\n"))
+            # nombre = input("Ingrese el nombre del nuevo producto:\n")
+            # descripcion = input("Ingrese unda descripcion para el nuevo producto:\n")
+            # valor = int(input("Ingrese un valor para el nuevo producto:\n"))
+
+            
+            # data = {
+            # "id": {id},
+            # "nombre": {nombre},
+            # "descripcion": {descripcion},
+            # "valor": {valor}
+            # }
+
+            # Api.crear_producto(data)
+            pass
+
         elif op == 'D':
-            id = int(input("Ingrese el id del producto que desea modificar:\n"))
-            nombre = input("Ingrese el nuevo nombre o mantenga el anterior:\n")
-            descripcion = input("Ingrese nueva descripción o mantenga la anterior:\n")
-            valor = int(input("Ingrese un nuevo valor o mantenga el anterior:\n"))
+            # id = int(input("Ingrese el id del producto que desea modificar:\n"))
+            # nombre = input("Ingrese el nuevo nombre o mantenga el anterior:\n")
+            # descripcion = input("Ingrese nueva descripción o mantenga la anterior:\n")
+            # valor = int(input("Ingrese un nuevo valor o mantenga el anterior:\n"))
 
-            # data = data.append(nombre, descripcion, valor)
-            data = {
-            "id": {id},
-            "nombre": {nombre},
-            "descripcion": {descripcion},
-            "valor": {valor}
-            }
+            # # data = data.append(nombre, descripcion, valor)
+            # data = {
+            # "id": {id},
+            # "nombre": {nombre},
+            # "descripcion": {descripcion},
+            # "valor": {valor}
+            # }
 
-            Api.actualizar_producto(data)
+            # Api.actualizar_producto(data)
+            pass
 
         elif op == 'E':
             id = int(input("Ingrese el id del producto que quiere eliminar:\n"))

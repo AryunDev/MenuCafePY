@@ -8,28 +8,23 @@ class Api():
     
     
     def __init__(self, url):
-        self.url = url
-        
-    
+        self.url = url        
+    # FUNCIONA
     def mostrar_productos():
 
         url = "http://localhost:5000/productos"
         response = requests.get(url)
-
         print(response)
-
         print(response.text)
         # esto sirve para hacer validaciones segun el julio
         print(response.status_code)
 
 
-
+    # FUNCIONA
     def mostrar_producto(id):
-
         url = f"http://localhost:5000/productos/{id}"
         response = requests.get(url)
-        response = response.json()        
-
+        response = response.json()     
         try:
             print(response)
         except:
@@ -37,18 +32,19 @@ class Api():
 
 
 
-    # def crear_producto(self, data):    
+    def crear_producto(data):    
         
-    #     headers = {'Content-Type': 'application/json'}
-    #     #data = f'{"id": {id}, "nombre": {nombre}, "descripcion": {descripcion}, "valor": {valor}}'
+        # headers = {"Content-Type': 'application/json"}
+        # data = {"id": 1,"nombre": "Donuts","descripcion": "rellenas de chocolate","valor": 2000}
 
         
-    #     # url = "http://localhost:5000/productos"
-    #     response = requests.post(self, url, data=data, headers = headers)
+        url = "http://localhost:5000/productos/"
         
-    #     print(response)
-    #     print(response.text)
-    #     print(response.status_code)
+        response = requests.post(url, data=data)
+        # response = response.json()
+        
+        print(response)
+        
 
     def actualizar_producto(id, data):
         url= f"http://localhost:5000/productos/{id}" 
@@ -76,7 +72,8 @@ class Api():
         
 
 
-url = "http://localhost:5000/productos"    
+url = "http://localhost:5000/productos"
+    
 obj = Api(url)
 # data = '{"nombre": "Papa","descripcion": "rellenas de chocolate"}'
 
