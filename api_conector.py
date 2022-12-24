@@ -29,47 +29,55 @@ class Api():
 
 
 
-    # def crear_producto(self, data):    
-    #     headers = {'Content-Type': 'application/json'}
-    #     data = '{"id": 10, "nombre": "Pié De Limón", "descripcion": "Masa, Azucar, Limó", "valor": 2500}'    
+    def crear_producto(self):    
         
-    #     url = "http://localhost:5000/productos"
-    #     response = requests.post(self, url, data=data, headers=headers)
+        # headers = {'Content-Type': 'application/json'}
+        data = {"id": 10, "nombre": "Pié De Limón", "descripcion": "Masa, Azucar, Limó", "valor": 2500}  
         
-    #     print(response)
-    #     print(response.text)
-    #     print(response.status_code)
+        # url = "http://localhost:5000/productos"
+        response = requests.post(self, url, data=data)
+        
+        print(response)
+        print(response.text)
+        print(response.status_code)
 
     def actualizar_producto(self, id):
         url= f"http://localhost:5000/productos/{id}" 
-        data = f"{'id': 1,'nombre': 'Donuts','descripcion': 'rellenas de chocolate','valor': 2500}"
+        data = {"id": 1,"nombre": "Donuts","descripcion": "rellenas de chocolate","valor": 2500}
 
-        response = requests.put(url, data)
-        print(response.text)
+        response = requests.put(url, data=data)
+        # print(response.text)
+        try:
+            response.status_code == 200
+            print('Datos actualizados correctamente')
+        except:
+            print('Error al actualizar los datos')
 
     def eliminar_producto(self, id):
-        
+
         url= f"http://localhost:5000/productos/{id}" 
         response = requests.delete(url)
 
-        if response.status_code == 204:
-                print('Datos eliminados correctamente')
-        else:
-                print('Error al eliminar los datos')
+        try:
+            response.status_code == 204
+            print('Datos eliminados correctamente')
+        except:
+            print('Error al eliminar los datos')
 
         
 
 
 url = "http://localhost:5000/productos"    
 obj = Api(url)
+# data = '{"nombre": "Papa","descripcion": "rellenas de chocolate"}'
 
-obj.eliminar_producto(8)
-obj.mostrar_productos()
-data = '{"id": 10, "nombre": "Pié De Limón", "descripcion": "Masa, Azucar, Limó", "valor": 2500}'
+# obj.actualizar_producto(1)
+# obj.mostrar_productos()
+
 
 # obj.mostrar_productos()
-#data.crear_producto()
-
+obj.crear_producto()
+obj.mostrar_productos()
 
     
 
