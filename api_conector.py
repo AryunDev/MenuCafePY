@@ -1,6 +1,6 @@
 import requests
-# from flask import Flask
-import json
+# from flask import Flask, jsonify, request
+# import json
 
 
 
@@ -9,63 +9,61 @@ class Api():
     
     def __init__(self, url):
         self.url = url        
-    # FUNCIONA
+    
     def mostrar_productos():
-
         url = "http://localhost:5000/productos"
-        response = requests.get(url)
-        print(response)
-        print(response.text)
-        # esto sirve para hacer validaciones segun el julio
-        print(response.status_code)
-
-
-    # FUNCIONA
-    def mostrar_producto(id):
-        url = f"http://localhost:5000/productos/{id}"
-        response = requests.get(url)
-        response = response.json()     
         try:
-            print(response)
+            response = requests.get(url)
+            # Para mostrar conexion = print(response)
+            # Para mostrar en formato json = response = response.json()            
+            print(response.text)        
+            #print(response.status_code)
         except:
-            print('Error al intentar mostrar los datos')
+            print("Error, no se puede mostrar productos en este momento!")
 
+    def mostrar_producto(id):
+        url = f"http://localhost:5000/productos/{id}"   
+        try:            
+            response = requests.get(url)
+            # Para mostrar en formato json = response = response.json()            
+            print(response.text)
+        except:
+            print('Error al intentar mostrar los datos')  
 
-
-    def crear_producto(data):    
+    def crear_producto(json_data):    
         
-        # headers = {"Content-Type': 'application/json"}
-        # data = {"id": 1,"nombre": "Donuts","descripcion": "rellenas de chocolate","valor": 2000}
-
-        
-        url = "http://localhost:5000/productos/"
-        
-        response = requests.post(url, data=data)
-        # response = response.json()
-        
-        print(response)
-        
-
-    def actualizar_producto(id, data):
-        url= f"http://localhost:5000/productos/{id}" 
-        # data = {"id": 1,"nombre": "Donuts","descripcion": "rellenas de chocolate","valor": 2500}    
+        headers = {'Content-Type': 'application/json'}                
+        url = "http://localhost:5000/productos"
         try:
-            response = requests.put(url, data=data)
-            response = response.json()
-            print(response)
-            # response.status_code == 200
-            print('Datos actualizados correctamente')
+            response = requests.post(url, data=json_data, headers=headers)
+            # Para mostrar en formato json = response = response.json()        
+            print(response.text)
+            print('Los datos del producto que seleccionaste fueron ingresados correctamente')
+        except:
+            print('Error, no se pudo crear el nuevo producto')        
+
+    def actualizar_producto(id, json_data):
+        headers = {'Content-Type': 'application/json'}
+        url= f"http://localhost:5000/productos/{id}"
+        
+            
+        try:
+            response = requests.put(url, data=json_data, headers = headers)
+            # Para mostrar en formato json = response = response.json()
+            print(response.text)
+            response.status_code == 200
+            print('Los datos del producto que seleccionaste fueron actualizados correctamente')
         except:
             print('Error al actualizar los datos')
 
     def eliminar_producto(id):
 
-        url= f"http://localhost:5000/productos/{id}" 
-        response = requests.delete(url)
+        url= f"http://localhost:5000/productos/{id}"      
 
         try:
+            response = requests.delete(url)
             response.status_code == 204
-            print('Datos eliminados correctamente')
+            print('Los datos del producto que seleccionaste fueron eliminados correctamente')
         except:
             print('Error al eliminar los datos')
 
@@ -73,17 +71,7 @@ class Api():
 
 
 url = "http://localhost:5000/productos"
-    
 obj = Api(url)
-# data = '{"nombre": "Papa","descripcion": "rellenas de chocolate"}'
-
-# obj.actualizar_producto(1)
-# obj.mostrar_productos()
-
-
-# obj.mostrar_producto()
-# obj.crear_producto()
-# obj.mostrar_productos()
 
     
 
