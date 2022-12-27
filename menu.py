@@ -1,14 +1,15 @@
 from api_conector import Api
 import json
-
-
 import os
-def limpiarpantalla():
-    os.system('cls')
 
 class Menu:
     def __init__():
+
+        def limpiarpantalla():
+            os.system('cls')
+
         print('''
+        =========================================
         ====================MENU=================
         = a) Mostrar los productos disponibles  =
         = b) Mostrar un producto en especifico  =
@@ -19,6 +20,7 @@ class Menu:
         =========================================
         =    Para salir del programa presione   =
         =        cualquier tecla !!!            =
+        =========================================
         =========================================
         ''')
         op = input("""
@@ -39,7 +41,7 @@ class Menu:
             Menu.__init__()
         
         elif op == 'B':
-            id = int(input("Ingrese el id del producto que desea mostrar (Ej: 1, 2, 3, 4, 5, 6, 7, 8...):\n---->"))
+            id = int(input("Ingrese el id del producto que desea mostrar (Ej: 1, 2, 3, 4, 5, 6, 7, 8, 9 ...):\n---->"))
             limpiarpantalla()
             print("""        
             =============PRODUCTO SELECCIONADO============
@@ -53,7 +55,7 @@ class Menu:
             limpiarpantalla()
             Menu.__init__()
         elif op == 'C':
-            id = int(input("Ingrese el id del nuevo producto (Ej: 10, 11, 12, 13, 14...):\n----->"))
+            id = int(input("Ingrese el id del nuevo producto (Ej: 4, 5, 6, 7, 8, 9 ...):\n----->"))
             nombre = input("Ingrese el nombre del nuevo producto:\n----->")
             descripcion = input("Ingrese una descripción para el nuevo producto:\n----->")
             valor = int(input("Ingrese un valor para el nuevo producto:\n----->"))
@@ -76,9 +78,11 @@ class Menu:
             limpiarpantalla()
             Menu.__init__()           
         elif op == 'D':
-            id = int(input("Ingrese el id del producto que desea modificar (1, 2, 3, 4, 5, 6...):\n----->"))
+            id = int(input("Ingrese el id del producto que desea modificar (1, 2, 3, 4, 5, 6, 7, 8, 9 ...):\n----->"))
+            print("Vea los datos del producto seleccionado y continue modificando:\n")
             Api.mostrar_producto(id)
-            nombre = input("Ingrese el nuevo nombre o mantenga el anterior:\n----->")
+            print("================================================================")
+            nombre = input("A continuacion, ingrese el nuevo nombre o mantenga el anterior:\n----->")
             descripcion = input("Ingrese nueva descripción o mantenga la anterior:\n----->")
             valor = int(input("Ingrese un nuevo valor o mantenga el anterior:\n----->"))            
             data = {'id': id, 'nombre': nombre, 'descripcion': descripcion, 'valor': valor}
@@ -96,9 +100,8 @@ class Menu:
             limpiarpantalla()
             Menu.__init__()           
         elif op == 'E':
-            id = int(input("Ingrese el id del producto que quiere eliminar (1, 2, 3, 4, 5, 6, 7, 8.....):\n----->"))
-            Api.eliminar_producto(id)
-            Api.mostrar_productos()
+            id = int(input("Ingrese el id del producto que quiere eliminar (1, 2, 3, 4, 5, 6, 7, 8, 9 .....):\n----->"))
+            Api.eliminar_producto(id)            
             input("""
             ==============================================
             ========PRESIONE ENTER PARA CONTINUAR!========
